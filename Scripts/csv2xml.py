@@ -32,7 +32,7 @@ with open("fontaines-a-boire.csv","r") as f:
 		b[0]=b[0].replace(" ","_")
 		for line in f:
 			t=line.rstrip().split(";")[0:]
-			try:
+			if len(t)==31:
 				i+=1
 				fi.write("<fontaine id=\"{}\">\n".format(i))
 				fi.write("<{}>{}</{}>\n".format(b[0],t[0],b[0]))
@@ -48,7 +48,5 @@ with open("fontaines-a-boire.csv","r") as f:
 				fi.write("<{}>{}</{}>\n".format(b[30],t[30],b[30]))
 				fi.write("</fontaine>")
 				fi.write("\n")
-			except IndexError:
-				print("La ligne {} n'a pas assez d'intervalles".format(i))		
 
 		fi.write("</Fontaines>")

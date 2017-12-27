@@ -1,0 +1,55 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT Fontaines (fontaine)+>
+<!ATTLIST Fontaines
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT fontaine (geo_point,id,localisati,adr_s,arro,modele,nb,
+                    ouv_hiver,en_service,comm,a_boire)>
+<!ATTLIST fontaine
+  xmlns CDATA #FIXED ''
+  id CDATA #REQUIRED>
+
+<!ELEMENT geo_point (#PCDATA)>
+<!ATTLIST geo_point
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT id (#PCDATA)>
+<!ATTLIST id
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT localisati (#PCDATA)>
+<!ATTLIST localisati
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT adr_s (#PCDATA)>
+<!ATTLIST adr_s
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT arro (#PCDATA)>
+<!ATTLIST arro
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT modele (#PCDATA)>
+<!ATTLIST modele
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT nb (#PCDATA)>
+<!ATTLIST nb
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT ouv_hiver (#PCDATA)>
+<!ATTLIST ouv_hiver
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT en_service (#PCDATA)>
+<!ATTLIST en_service
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT comm (#PCDATA)>
+<!ATTLIST comm
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT a_boire (#PCDATA)>
+<!ATTLIST a_boire
+  xmlns CDATA #FIXED ''>
