@@ -26,7 +26,7 @@ with open("fontaines-a-boire.csv","r") as f:
 	b=f.readline().rstrip().lower().split(";")[0:]
 	with open("fontaines-a-boire.xml","w") as fi:
 		fi.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-		fi.write("<!DOCTYPE Root SYSTEM \"Fontaines.dtd\">\n")
+		fi.write("<!DOCTYPE Fontaines SYSTEM \"Fontaines.dtd\">\n")
 		fi.write("<Fontaines>\n")
 		i=0
 		b[0]=b[0].replace(" ","_")
