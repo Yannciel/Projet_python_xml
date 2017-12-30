@@ -8,8 +8,12 @@ h2{
     font: bold;
 }
 table, th, td{
+    width: 50%;
     border-collapse: collapse;
     border: 2px solid black;
+}
+th{
+    background: #ccccff;
 }
 tr:hover{
     background-color: #bbddff;

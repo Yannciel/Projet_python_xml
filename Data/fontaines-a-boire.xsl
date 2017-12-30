@@ -13,7 +13,7 @@
             <body>
                 <div>
                     <h2>Données brutes utilisées dans ce projet</h2>
-                    <table border="1">
+                    <table align="center">
                         <tr>
                             <th>Fontaines</th>
                             <th>Géo-point de fontaines</th>
