@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROJET>
+    <presentation>
+        <sujet>Les fontaines potables à Paris</sujet>
+        <problematique>
+            De diverses fontaines se situent dans Paris alors que toutes les fontaines ne sont pas potables. Ce qui va peut-être poser du problème pour les touristes, les voyageurs et les enfants.
+            Ce projet s'est réalisé dans le cadre des 2 cours - XML et Python - du M2 TAL à l'INALCO. L'objectif de ce projet est d'étudier les aspects en corrélation avec la "potabilité" des fontaines, par la modélisation, le filtrage et l'analyse des données.
+            
+            Nous allons donc présenter ici les étapes que nous avons suivies pour réaliser ce projet
+        </problematique>
+    </presentation>
+</PROJET>
