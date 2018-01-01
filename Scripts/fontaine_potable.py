@@ -23,7 +23,7 @@
 
 from lxml import etree
 from collections import defaultdict
-FICHIER = 'fontaines-a-boire.xml'
+FICHIER = '../XML/fontaines-a-boire.xml'
 tree = etree.parse(FICHIER)
 
 Aroo_Aboire= tree.xpath("//arro|//a_boire")

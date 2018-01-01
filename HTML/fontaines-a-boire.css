@@ -7,22 +7,16 @@ h2{
     font-family: Zapf-Chancery, cursive;
     font: bold;
 }
-table td{
+table, th, td{
     text-align: center;
     border-collapse: collapse;
     border: 2px solid black;
 }
-
 th{
     background: #ccccff;
+    font-family: Courier;
+    font-size: 20px;
 }
-
 tr:hover{
     background-color: #bbddff;
-}
-
-.cat{
-    background:;
-    font-family:Courier;
-    border-width: 30px;
 }
