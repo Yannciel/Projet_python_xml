@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="Fontaines">
+      <oneOrMore>
+        <element name="fontaine">
+          <attribute name="id">
+            <data type="integer"/>
+          </attribute>
+          <element name="geo_point">
+            <text/>
+          </element>
+          <element name="id">
+            <data type="decimal"/>
+          </element>
+          <element name="localisati">
+            <text/>
+          </element>
+          <element name="adr_s">
+            <text/>
+          </element>
+          <element name="arro">
+            <data type="integer"/>
+          </element>
+          <element name="modele">
+            <text/>
+          </element>
+          <element name="nb">
+            <data type="decimal"/>
+          </element>
+          <element name="ouv_hiver">
+            <text/>
+          </element>
+          <element name="en_service">
+            <text/>
+          </element>
+          <element name="comm">
+            <text/>
+          </element>
+          <element name="a_boire">
+            <data type="integer"/>
+          </element>
+        </element>
+      </oneOrMore>
+    </element>
+  </start>
+</grammar>
