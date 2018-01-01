@@ -10,7 +10,7 @@
 #
 #Mise à jour : 
 #
-#But : Transformer une fiche tournage de film csv en xml
+#But : Transformer une fiche fontaine à boire xml en html
 #
 #Usage : python3 carte.py
 #
@@ -24,7 +24,6 @@ from lxml import etree
 import MY_KEY
 FICHIER = 'fontaines-a-boire.xml'
 tree = etree.parse(FICHIER)
-root = tree.getroot()
 geo=tree.xpath("//geo_point")
 geo_list=[]
 for i in geo:
