@@ -4,7 +4,7 @@
 ###SYNOPSIS####
 ###############
 #
-#Auteur : Mingqiang Wang
+#Auteur : Mingqiang Wang & Guanhua WANG
 #
 #Date : 01/01/[18]
 #
