@@ -1,0 +1,61 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT EspaceVert (Espacevert)+>
+<!ATTLIST EspaceVert
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT Espacevert (geo_point,geo_shape,annee_ouverture,
+                      annee_renovation,annee_changement,nom_ev,
+                      ancien_nom,numero,statut,surface_administrative_,
+                      adresse,arrondissement)>
+<!ATTLIST Espacevert
+  xmlns CDATA #FIXED ''
+  id CDATA #REQUIRED>
+
+<!ELEMENT geo_point (#PCDATA)>
+<!ATTLIST geo_point
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT geo_shape (#PCDATA)>
+<!ATTLIST geo_shape
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT annee_ouverture (#PCDATA)>
+<!ATTLIST annee_ouverture
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT annee_renovation (#PCDATA)>
+<!ATTLIST annee_renovation
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT annee_changement (#PCDATA)>
+<!ATTLIST annee_changement
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT nom_ev (#PCDATA)>
+<!ATTLIST nom_ev
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT ancien_nom (#PCDATA)>
+<!ATTLIST ancien_nom
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT numero (#PCDATA)>
+<!ATTLIST numero
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT statut (#PCDATA)>
+<!ATTLIST statut
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT surface_administrative_ (#PCDATA)>
+<!ATTLIST surface_administrative_
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT adresse (#PCDATA)>
+<!ATTLIST adresse
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT arrondissement (#PCDATA)>
+<!ATTLIST arrondissement
+  xmlns CDATA #FIXED ''>

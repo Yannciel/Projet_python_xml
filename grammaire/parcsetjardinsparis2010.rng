@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="EspaceVert">
+      <oneOrMore>
+        <element name="Espacevert">
+          <attribute name="id">
+            <data type="integer"/>
+          </attribute>
+          <element name="geo_point">
+            <text/>
+          </element>
+          <element name="geo_shape">
+            <text/>
+          </element>
+          <element name="annee_ouverture">
+            <data type="integer"/>
+          </element>
+          <element name="annee_renovation">
+            <data type="integer"/>
+          </element>
+          <element name="annee_changement">
+            <data type="integer"/>
+          </element>
+          <element name="nom_ev">
+            <text/>
+          </element>
+          <element name="ancien_nom">
+            <text/>
+          </element>
+          <element name="numero">
+            <data type="integer"/>
+          </element>
+          <element name="statut">
+            <text/>
+          </element>
+          <element name="surface_administrative_">
+            <data type="decimal"/>
+          </element>
+          <element name="adresse">
+            <text/>
+          </element>
+          <element name="arrondissement">
+            <data type="integer"/>
+          </element>
+        </element>
+      </oneOrMore>
+    </element>
+  </start>
+</grammar>
