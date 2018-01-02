@@ -10,7 +10,7 @@
 #
 #Mise à jour : 
 #
-#But : Transformer une fiche tournage de film csv en xml
+#But : Transformer le fichier fontaines-a-boire.csv en xml
 #
 #Usage : python3 csv2xml.py
 #
