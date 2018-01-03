@@ -54,7 +54,10 @@ def mark_fontaine(carte,nomfichier):
     tree = ET.parse(nomfichier)
     for elem in tree.xpath('//geo_point'):
         coor = elem.text.rstrip()
-        folium.CircleMarker(location=[coor],radius=1).add_to(carte)
+        coordinates = coor.split(", ")
+        lat = float(coordinates[0])
+        lgt = float(coordinates[1])
+        folium.CircleMarker(location=[lat, lgt],radius=1).add_to(carte)
     return carte
 
 
