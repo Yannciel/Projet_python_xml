@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+	<title>Carte des fontaines et les zones</title>
+	<meta charset="utf-8"/>
+	<style>
+		#map {height: 100%;}
+		html, body {height: 100%; margin: 0; padding: 0;} 
+	</style>
+</head>
+<body>
+	<div id="map"></div>
+	<script>
+		var map;
+		function initMap() {
+  			map = new google.maps.Map(document.getElementById('map'), {
+    			zoom: 12,
+    			center: {lat: 48.872, lng: 2.2999}
+  			});
+			map.data.loadGeoJson('zones-touristiques-internationales.geojson');
+			map.data.setStyle({
+				visible: true,
+				fillColor: 'red',
+				strokeWeight: 0,
+			});
+		}
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvgtYCf4ot9j4julGyGIIVr70IWB3McYU&callback=initMap" async defer></script>
+</body>
+</html>

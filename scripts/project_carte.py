@@ -34,9 +34,18 @@ def mark_touristes(nomfichier):
     tree = ET.parse(nomfichier)
 
     for elem in tree.iter(tag='zone'):
+<<<<<<< HEAD
         name = elem.find('name').text.strip()
         coor= elem.find('geo_point').text
         folium.CircleMarker(location=[coor],radius=200,fill_color='#3186cc',popup=name).add_to(carte_touristes)
+=======
+        name = elem.find('name').text
+        coor = elem.find('geo_point').text
+        coordinates = coor.split(', ')
+        lat = float(coordinates[0])
+        lgt = float(coordinates[1])
+        folium.CircleMarker(location=[lat, lgt],radius=200,fill_color='#3186cc',popup=name).add_to(carte_touristes)
+>>>>>>> 1542afc61b54e6b3b1e568c1f0d81e6aa8eef8e7
     return carte_touristes
 
 
@@ -47,13 +56,21 @@ def mark_fontaine(carte,nomfichier):
     """
     tree = ET.parse(nomfichier)
     for elem in tree.iter(tag = 'fontaine'):
+<<<<<<< HEAD
         coor = elem.find('geo_point').text.strip()
         folium.CircleMarker(location=[coor],radius=1).add_to(carte)
+=======
+        coor = elem.find('geo_point').text
+        coordinates = coor.split(', ')
+        lat = float(coordinates[0])
+        lgt = float(coordinates[1])
+        folium.CircleMarker(location=[lat, lgt],radius=1).add_to(carte)
+>>>>>>> 1542afc61b54e6b3b1e568c1f0d81e6aa8eef8e7
     return carte
 
 
 print("Projection des zones touristes et toutes les fontaines dans une carte...")
 carte_touristesfontaines= mark_fontaine(mark_touristes("../xml/zones-touristiques-internationales.xml"),"../xml/fontaines-a-boire.xml")
 print("Réussir à créer la carte!")
-carte_touristesfontaines.save('../cartes/carte_zonestouristiques_fontaines.html')
+carte_touristesfontaines.save('../web/html/carte_zonestouristiques_fontaines.html')
 print("Fin")
