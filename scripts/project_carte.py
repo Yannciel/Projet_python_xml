@@ -34,12 +34,18 @@ def mark_touristes(nomfichier):
     tree = ET.parse(nomfichier)
 
     for elem in tree.iter(tag='zone'):
+<<<<<<< HEAD
+        name = elem.find('name').text.strip()
+        coor= elem.find('geo_point').text
+        folium.CircleMarker(location=[coor],radius=50,fill_color='#3186cc',popup=name).add_to(carte_touristes)
+=======
         name = elem.find('name').text
         coor = elem.find('geo_point').text
         coordinates = coor.split(', ')
         lat = float(coordinates[0])
         lgt = float(coordinates[1])
-        folium.CircleMarker(location=[lat, lgt],radius=200,fill_color='#3186cc',popup=name).add_to(carte_touristes)
+        folium.CircleMarker(location=[lat, lgt],radius=50,fill_color='#3186cc',popup=name).add_to(carte_touristes)
+>>>>>>> 1542afc61b54e6b3b1e568c1f0d81e6aa8eef8e7
     return carte_touristes
 
 
@@ -50,11 +56,16 @@ def mark_fontaine(carte,nomfichier):
     """
     tree = ET.parse(nomfichier)
     for elem in tree.iter(tag = 'fontaine'):
+<<<<<<< HEAD
+        coor = elem.find('geo_point').text.strip()
+        folium.CircleMarker(location=[coor],radius=1).add_to(carte)
+=======
         coor = elem.find('geo_point').text
         coordinates = coor.split(', ')
         lat = float(coordinates[0])
         lgt = float(coordinates[1])
         folium.CircleMarker(location=[lat, lgt],radius=1).add_to(carte)
+>>>>>>> 1542afc61b54e6b3b1e568c1f0d81e6aa8eef8e7
     return carte
 
 
