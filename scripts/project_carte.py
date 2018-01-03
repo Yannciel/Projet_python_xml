@@ -34,7 +34,7 @@ def mark_touristes(nomfichier):
     tree = ET.parse(nomfichier)
 
     for elem in tree.iter(tag='zone'):
-        name = elem.find('name').text
+        name = elem.find('name').text.strip()
         coor= elem.find('geo_point').text
         folium.CircleMarker(location=[coor],radius=200,fill_color='#3186cc',popup=name).add_to(carte_touristes)
     return carte_touristes
@@ -47,7 +47,7 @@ def mark_fontaine(carte,nomfichier):
     """
     tree = ET.parse(nomfichier)
     for elem in tree.iter(tag = 'fontaine'):
-        coor = elem.find('geo_point').text
+        coor = elem.find('geo_point').text.strip()
         folium.CircleMarker(location=[coor],radius=1).add_to(carte)
     return carte
 
