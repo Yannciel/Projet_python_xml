@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar ns="" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <element name="ZONES">
+      <oneOrMore>
+        <element name="zone">
+          <attribute name="id">
+            <data type="integer"/>
+          </attribute>
+          <element name="geo_point">
+            <text/>
+          </element>
+          <element name="geo_shape">
+            <text/>
+          </element>
+          <element name="name">
+            <text/>
+          </element>
+          <element name="source">
+            <data type="NCName"/>
+          </element>
+          <element name="boundary">
+            <data type="NCName"/>
+          </element>
+        </element>
+      </oneOrMore>
+    </element>
+  </start>
+</grammar>

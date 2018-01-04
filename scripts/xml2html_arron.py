@@ -4,26 +4,28 @@
 ###SYNOPSIS####
 ###############
 #
-#Auteur : Mingqiang Wang
+#Auteur :  Mingqiang Wang & Guanhua WANG
 #
 #Date : 01/01/[18]
 #
 #Mise à jour : 
 #
-#But : Transformer une fiche fontaine à boire xml en html
+#But : Transformer une fiche fontaine à boire xml en html selon l'arrodissment
 #
-#Usage : python3 XML2HTML.py
+#Usage : python3 xml2html_arro.py
 #
 #Exemple : /
 #
 #Remarques :  fichier avec  
-#							- Nom : 
+#							- Nom : fontaines-a-boire.xml
 #							- <autres élèments> :
 ###############
 
 from lxml import etree
 from collections import defaultdict
-FICHIER = '../XML/fontaines-a-boire.xml'
+import os 
+
+FICHIER = os.path.join('..','data','XML','fontaines-a-boire.xml')
 tree = etree.parse(FICHIER)
 
 Aroo_Aboire= tree.xpath("//arro|//a_boire")
@@ -41,12 +43,8 @@ for i in range(len(Aroo_Aboirelist)):
         b=i
         Aroo_Aboiredict[Aroo_Aboirelist[c]].append(Aroo_Aboirelist[b])
 
-for arr in Aroo_Aboiredict:
-    print("le nombre de fontaine potable dans l'arrodissement {} est {}, non potable est {}".format(arr,Aroo_Aboiredict[arr].count('1'),Aroo_Aboiredict[arr].count('0')))
-
-
-with open('fontaine_potable.html','w') as f:
-    f.write("<!DOCTYPE html><html><head><title>Tableau Fontaine Potable</title><link rel=\"stylesheet\" type=\"text/css\" href=\"fontaines-a-boire.css\"></head><body>")
+with open(os.path.join('..','web','html','fontaine_potable.html'),'w') as f:
+    f.write("<!DOCTYPE html><html><head><title>Tableau Fontaine Potable</title><link rel=\"stylesheet\" type=\"text/css\" href=\"../css/fontaines-a-boire.css\"></head><body>")
     f.write("<body><table border=\"1\" align=\"center\"><tr>")
     f.write("<th class=\"cat\" style=\"font-size:20px\">Arroddisment</th>")
     f.write("<th class=\"cat\" style=\"font-size:20px\">Nombre Potable</th>")

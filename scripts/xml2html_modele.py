@@ -1,8 +1,30 @@
 #!usr/bin/env python3
 #coding=utf-8
+###############
+###SYNOPSIS####
+###############
+#
+#Auteur : Mingqiang Wang & Guanhua WANG
+#
+#Date : 31/12/[17]
+#
+#Mise à jour : 
+#
+#But : PTransformer une fiche fontaine à boire xml en html selon leur modèle
+#
+#Usage : python3 xml2html_modle.py
+#
+#Exemple : /
+#
+#Remarques :  fichier avec  
+#                           - Nom : fontaines-a-boire.xml
+#                           - <autres élèments> :
+###############
 from lxml import etree
 from collections import defaultdict
-file = "../XML/fontaines-a-boire.xml"
+import os
+
+file = os.path.join('..','data','XML',"fontaines-a-boire.xml")
 tree = etree.parse(file)
 modele = tree.xpath("//modele|//a_boire")
 modele_dict = defaultdict(list)
@@ -19,11 +41,8 @@ for i in range(len(modele_list)):
 		n = i
 		modele_dict[modele_list[m]].append(modele_list[n])
 
-for mod in modele_dict:
-	print("le nombre de fontaine potable du modele {} est {}, non potable est {}".format(mod,modele_dict[mod].count('1'),modele_dict[mod].count('0')))
-
-with open('tableau_modele.html','w') as f:
-    f.write("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Tableau Fontaine Potable</title>\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"fontaines-a-boire.css\">\n\t</head>\n\t<body>\n\t\t")
+with open(os.path.join('..','web','html','tableau_modele.html'),'w') as f:
+    f.write("<!DOCTYPE html>\n<html>\n\t<head>\n\t\t<title>Tableau Fontaine Potable</title>\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"../css/fontaines-a-boire.css\">\n\t</head>\n\t<body>\n\t\t")
     f.write("<table align=\"center\">\n\t\t\t<tr>\n\t\t\t\t")
     f.write("<th>Modèle</th>\n\t\t\t\t")
     f.write("<th>Nombre Potable</th>\n\t\t\t\t")

@@ -4,27 +4,27 @@
 ###SYNOPSIS####
 ###############
 #
-#Auteur : Mingqiang Wang
+#Auteur : Mingqiang Wang & Guanhua WANG
 #
 #Date : 21/12/[17]
 #
 #Mise à jour : 
 #
-#But : Transformer une fiche tournage de film csv en xml
+#But : Transformer une fiche fontaine csv en xml
 #
-#Usage : python3 csv2xml.py
+#Usage : python3 csv2xml_fontaine.py
 #
 #Exemple : /
 #
 #Remarques :  fichier avec  
-#							- Nom : 
+#							- Nom : fontaines-a-boire.csv
 #							- <autres élèments> :
 ###############
+import os
 
-
-with open("fontaines-a-boire.csv","r") as f:
+with open(os.path.join('..','data','CSV',"fontaines-a-boire.csv"),"r") as f:
 	b=f.readline().rstrip().lower().split(";")[0:]
-	with open("fontaines-a-boire.xml","w") as fi:
+	with open(os.path.join('..','data','XML',"fontaines-a-boire.xml"),"w") as fi:
 		fi.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
 		fi.write("<!DOCTYPE Root SYSTEM \"Fontaines.dtd\">\n")
 		fi.write("<Fontaines>\n")

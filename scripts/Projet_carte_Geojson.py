@@ -10,15 +10,15 @@
 #
 #Mise à jour : 
 #
-#But : Projeter des fontaines et espaces verts dans une cartes
+#But : Projeter des fontaines et espaces verts et des zones touristiques dans une cartes
 #
-#Usage : python3 XML2HTML.py
+#Usage : python3 Projet_carte_Geojson.py
 #
 #Exemple : /
 #
 #Remarques :  fichier avec  
-#                           - Nom : 
-#                           - <autres élèments> :
+#                           - Nom : parcsetjardinsparis2010.geojson,zones-touristiques-internationales.geojson,fontaines-a-boire.xml
+#                           - <autres élèments> : Installer folium (https://github.com/python-visualization/folium)
 ###############
 from lxml import etree as ET
 import folium
@@ -37,7 +37,6 @@ def mark_touristes(nomfichier):
     Retourne: une carte OpenStreetMap
     """
     m = folium.Map(location=[48.87, 2.33],zoom_start=13)
-
     folium.GeoJson(
         nomfichier,
      name='geojson'
@@ -59,12 +58,9 @@ def mark_fontaine(carte,nomfichier):
         coordinates = coor.split(", ")
         lat = float(coordinates[0])
         lgt = float(coordinates[1])
-<<<<<<< HEAD:scripts/geojson_RUN.py
         folium.CircleMarker(location=[lat,lgt],radius=1).add_to(carte)
-=======
         fill_color='YlGn'
         folium.CircleMarker(location=[lat, lgt],radius=0.5).add_to(carte)
->>>>>>> 661f44c8c85e00dbe2a6ca0cd4652477ba6f9563:scripts/Projet_carte_Geojson.py
     return carte
 
 
@@ -73,12 +69,11 @@ print("Projection des zones touristes et toutes les fontaines dans une carte..."
 carte_touristesfontaines= mark_fontaine(mark_touristes(zones_touristiques_internationales),fontaines_a_boire)
 print("Réussir à créer la carte!")
 carte_touristesfontaines.save(carte_zonestouristiques_fontaines)
-print("Fin")
 
 print("Projection des zones touristes et toutes les espaces verts dans une carte...")
 carte_espacesfontaines= mark_fontaine(mark_touristes(parcsetjardinsparis2010),fontaines_a_boire)
 print("Réussir à créer la carte!")
 carte_espacesfontaines.save(carte_espacesverts_fontaines)
-print("Fin")
+
 
 

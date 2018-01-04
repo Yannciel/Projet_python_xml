@@ -1,0 +1,30 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT ZONES (zone)+>
+<!ATTLIST ZONES
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT zone (geo_point,geo_shape,name,source,boundary)>
+<!ATTLIST zone
+  xmlns CDATA #FIXED ''
+  id CDATA #REQUIRED>
+
+<!ELEMENT geo_point (#PCDATA)>
+<!ATTLIST geo_point
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT geo_shape (#PCDATA)>
+<!ATTLIST geo_shape
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT source (#PCDATA)>
+<!ATTLIST source
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT boundary (#PCDATA)>
+<!ATTLIST boundary
+  xmlns CDATA #FIXED ''>

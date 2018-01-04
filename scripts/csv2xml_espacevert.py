@@ -4,7 +4,7 @@
 ###SYNOPSIS####
 ###############
 #
-#Auteur : Mingqiang Wang
+#Auteur :  Mingqiang Wang & Guanhua WANG
 #
 #Date : 02/01/[18]
 #
@@ -17,14 +17,14 @@
 #Exemple : /
 #
 #Remarques :  fichier avec  
-#							- Nom : 
+#							- Nom : parcsetjardinsparis2010.csv
 #							- <autres élèments> :
 ###############
+import os
 
-
-with open("parcsetjardinsparis2010.csv","r") as f:
+with open(os.path.join('..','data','CSV',"parcsetjardinsparis2010.csv"),"r") as f:
 	b=f.readline().rstrip().lower().split(";")[0:]
-	with open("parcsetjardinsparis2010.xml","w") as fi:
+	with open(os.path.join('..','data','XML',"parcsetjardinsparis2010.xml"),"w") as fi:
 		fi.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
 		fi.write("<!DOCTYPE EspaceVert SYSTEM \"EspaceVert.dtd\">\n")
 		fi.write("<EspaceVert>\n")

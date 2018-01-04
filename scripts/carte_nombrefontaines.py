@@ -4,31 +4,33 @@
 ###SYNOPSIS####
 ###############
 #
-#Auteur : Mingqiang Wang
+#Auteur : Mingqiang Wang & Guanhua WANG
 #
 #Date : 31/12/[17]
 #
 #Mise à jour : 
 #
-#But : Transformer une fiche fontaine à boire xml en html
+#But : Projection des fontaines dans une carte selon leur nombre
 #
-#Usage : python3 carte.py
+#Usage : python3 carte_nombrefontaines.py
 #
 #Exemple : /
 #
 #Remarques :  fichier avec  
-#							- Nom : 
+#							- Nom : fontaines-a-boire.xml
 #							- <autres élèments> :
 ###############
+import os
 from lxml import etree
-FICHIER = 'fontaines-a-boire.xml'
+
+FICHIER = os.path.join('..','data','XML','fontaines-a-boire.xml')
 tree = etree.parse(FICHIER)
-geo=tree.xpath("//geo_point")
-geo_list=[]
+geo = tree.xpath("//geo_point")
+geo_list = []
 for i in geo:
 	geo_list.append(i.text)
 sortie=""
-with open('carte_nombrefontaines.html','w') as f:
+with open(os.path.join('..','web','html','carte_nombrefontaines.html'),'w') as f:
 	sortie += "<!DOCTYPE html>\n<html>\n<head>\n"
 	sortie += "<meta name=\"viewport\" content=\"initial-scale=1.0, user-scalable=no\">\n"
 	sortie += "<meta charset=\"utf-8\">\n"
@@ -45,7 +47,7 @@ with open('carte_nombrefontaines.html','w') as f:
 	sortie += "var markerCluster = new MarkerClusterer(map, markers,\n"
 	sortie += " {imagePath: \'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m\'});\n}\n"
 
-	with open('fontaines-a-boire.xml','r') as file:
+	with open(FICHIER,'r') as file:
 		sortie += "var locations = [\n"
 		for g in geo_list:
 			lat,lng=g.split(",")
