@@ -58,9 +58,7 @@ def mark_fontaine(carte,nomfichier):
         coordinates = coor.split(", ")
         lat = float(coordinates[0])
         lgt = float(coordinates[1])
-        folium.CircleMarker(location=[lat,lgt],radius=1).add_to(carte)
-        fill_color='YlGn'
-        folium.CircleMarker(location=[lat, lgt],radius=0.5).add_to(carte)
+        folium.CircleMarker(location=[lat,lgt],radius=1,color='red').add_to(carte)
     return carte
 
 
