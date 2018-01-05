@@ -1,5 +1,3 @@
-<?xml encoding="UTF-8"?>
-
 <!ELEMENT ZONES (zone)+>
 <!ATTLIST ZONES
   xmlns CDATA #FIXED ''>

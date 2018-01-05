@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE Fontaines SYSTEM "fontaines-a-boire.dtd">
-<?xml-stylesheet type="text/xsl" href="fontaines-a-boire.xsl"?>
 <Fontaines>
     <fontaine id="1">
         <geo_point>48.8455274608, 2.25550660889</geo_point>

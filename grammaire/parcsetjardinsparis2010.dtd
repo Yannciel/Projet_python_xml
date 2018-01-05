@@ -1,5 +1,3 @@
-<?xml encoding="UTF-8"?>
-
 <!ELEMENT EspaceVert (Espacevert)+>
 <!ATTLIST EspaceVert
   xmlns CDATA #FIXED ''>

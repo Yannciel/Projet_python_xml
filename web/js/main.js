@@ -1,185 +1,210 @@
-jQuery(document).ready(function($){
-	//cache DOM elements
-	var projectsContainer = $('.cd-projects-container'),
-		projectsPreviewWrapper = projectsContainer.find('.cd-projects-previews'),
-		projectPreviews = projectsPreviewWrapper.children('li'),
-		projects = projectsContainer.find('.cd-projects'),
-		navigationTrigger = $('.cd-nav-trigger'),
-		navigation = $('.cd-primary-nav'),
-		//if browser doesn't support CSS transitions...
-		transitionsNotSupported = ( $('.no-csstransitions').length > 0);
+/*
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
 
-	var animating = false,
-		//will be used to extract random numbers for projects slide up/slide down effect
-		numRandoms = projects.find('li').length, 
-		uniqueRandoms = [];
+(function($) {
 
-	//open project
-	projectsPreviewWrapper.on('click', 'a', function(event){
-		event.preventDefault();
-		if( animating == false ) {
-			animating = true;
-			navigationTrigger.add(projectsContainer).addClass('project-open');
-			openProject($(this).parent('li'));
-		}
+	skel.breakpoints({
+		xlarge:	'(max-width: 1680px)',
+		large:	'(max-width: 1280px)',
+		medium:	'(max-width: 980px)',
+		small:	'(max-width: 736px)',
+		xsmall:	'(max-width: 480px)'
 	});
 
-	navigationTrigger.on('click', function(event){
-		event.preventDefault();
-		
-		if( animating == false ) {
-			animating = true;
-			if( navigationTrigger.hasClass('project-open') ) {
-				//close visible project
-				navigationTrigger.add(projectsContainer).removeClass('project-open');
-				closeProject();
-			} else if( navigationTrigger.hasClass('nav-visible') ) {
-				//close main navigation
-				navigationTrigger.removeClass('nav-visible');
-				navigation.removeClass('nav-clickable nav-visible');
-				if(transitionsNotSupported) projectPreviews.removeClass('slide-out');
-				else slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, false);
-			} else {
-				//open main navigation
-				navigationTrigger.addClass('nav-visible');
-				navigation.addClass('nav-visible');
-				if(transitionsNotSupported) projectPreviews.addClass('slide-out');
-				else slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, true);
-			}
-		}	
+	$(function() {
 
-		if(transitionsNotSupported) animating = false;
-	});
+		var	$window = $(window),
+			$body = $('body'),
+			$sidebar = $('#sidebar');
 
-	//scroll down to project info
-	projectsContainer.on('click', '.scroll', function(){
-		projectsContainer.animate({'scrollTop':$(window).height()}, 500); 
-	});
+		// Hack: Enable IE flexbox workarounds.
+			if (skel.vars.IEVersion < 12)
+				$body.addClass('is-ie');
 
-	//check if background-images have been loaded and show project previews
-	projectPreviews.children('a').bgLoaded({
-	  	afterLoaded : function(){
-	   		showPreview(projectPreviews.eq(0));
-	  	}
-	});
+		// Disable animations/transitions until the page has loaded.
+			if (skel.canUse('transition'))
+				$body.addClass('is-loading');
 
-	function showPreview(projectPreview) {
-		if(projectPreview.length > 0 ) {
-			setTimeout(function(){
-				projectPreview.addClass('bg-loaded');
-				showPreview(projectPreview.next());
-			}, 150);
-		}
-	}
-
-	function openProject(projectPreview) {
-		var projectIndex = projectPreview.index();
-		projects.children('li').eq(projectIndex).add(projectPreview).addClass('selected');
-		
-		if( transitionsNotSupported ) {
-			projectPreviews.addClass('slide-out').removeClass('selected');
-			projects.children('li').eq(projectIndex).addClass('content-visible');
-			animating = false;
-		} else { 
-			slideToggleProjects(projectPreviews, projectIndex, 0, true);
-		}
-	}
-
-	function closeProject() {
-		projects.find('.selected').removeClass('selected').on('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-			$(this).removeClass('content-visible').off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
-			slideToggleProjects(projectsPreviewWrapper.children('li'), -1, 0, false);
-		});
-
-		//if browser doesn't support CSS transitions...
-		if( transitionsNotSupported ) {
-			projectPreviews.removeClass('slide-out');
-			projects.find('.content-visible').removeClass('content-visible');
-			animating = false;
-		}
-	}
-
-	function slideToggleProjects(projectsPreviewWrapper, projectIndex, index, bool) {
-		if(index == 0 ) createArrayRandom();
-		if( projectIndex != -1 && index == 0 ) index = 1;
-
-		var randomProjectIndex = makeUniqueRandom();
-		if( randomProjectIndex == projectIndex ) randomProjectIndex = makeUniqueRandom();
-		
-		if( index < numRandoms - 1 ) {
-			projectsPreviewWrapper.eq(randomProjectIndex).toggleClass('slide-out', bool);
-			setTimeout( function(){
-				//animate next preview project
-				slideToggleProjects(projectsPreviewWrapper, projectIndex, index + 1, bool);
-			}, 150);
-		} else if ( index == numRandoms - 1 ) {
-			//this is the last project preview to be animated 
-			projectsPreviewWrapper.eq(randomProjectIndex).toggleClass('slide-out', bool).one('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend', function(){
-				if( projectIndex != -1) {
-					projects.children('li.selected').addClass('content-visible');
-					projectsPreviewWrapper.eq(projectIndex).addClass('slide-out').removeClass('selected');
-				} else if( navigation.hasClass('nav-visible') && bool ) {
-					navigation.addClass('nav-clickable');
-				}
-				projectsPreviewWrapper.eq(randomProjectIndex).off('webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend');
-				animating = false;
+			$window.on('load', function() {
+				window.setTimeout(function() {
+					$body.removeClass('is-loading');
+				}, 100);
 			});
-		}
-	}
 
-	//http://stackoverflow.com/questions/19351759/javascript-random-number-out-of-5-no-repeat-until-all-have-been-used
-	function makeUniqueRandom() {
-	    var index = Math.floor(Math.random() * uniqueRandoms.length);
-	    var val = uniqueRandoms[index];
-	    // now remove that value from the array
-	    uniqueRandoms.splice(index, 1);
-	    return val;
-	}
+		// Forms.
 
-	function createArrayRandom() {
-		//reset array
-		uniqueRandoms.length = 0;
-		for (var i = 0; i < numRandoms; i++) {
-            uniqueRandoms.push(i);
-        }
-	}
-});
+			// Fix: Placeholder polyfill.
+				$('form').placeholder();
 
- /*
- * BG Loaded
- * Copyright (c) 2014 Jonathan Catmull
- * Licensed under the MIT license.
- */
- (function($){
- 	$.fn.bgLoaded = function(custom) {
-	 	var self = this;
+			// Hack: Activate non-input submits.
+				$('form').on('click', '.submit', function(event) {
 
-		// Default plugin settings
-		var defaults = {
-			afterLoaded : function(){
-				this.addClass('bg-loaded');
-			}
-		};
+					// Stop propagation, default.
+						event.stopPropagation();
+						event.preventDefault();
 
-		// Merge default and user settings
-		var settings = $.extend({}, defaults, custom);
+					// Submit form.
+						$(this).parents('form').submit();
 
-		// Loop through element
-		self.each(function(){
-			var $this = $(this),
-				bgImgs = $this.css('background-image').split(', ');
-			$this.data('loaded-count',0);
-			$.each( bgImgs, function(key, value){
-				var img = value.replace(/^url\(["']?/, '').replace(/["']?\)$/, '');
-				$('<img/>').attr('src', img).load(function() {
-					$(this).remove(); // prevent memory leaks
-					$this.data('loaded-count',$this.data('loaded-count')+1);
-					if ($this.data('loaded-count') >= bgImgs.length) {
-						settings.afterLoaded.call($this);
-					}
 				});
+
+		// Prioritize "important" elements on medium.
+			skel.on('+medium -medium', function() {
+				$.prioritize(
+					'.important\\28 medium\\29',
+					skel.breakpoint('medium').active
+				);
 			});
 
-		});
-	};
+		// Sidebar.
+			if ($sidebar.length > 0) {
+
+				var $sidebar_a = $sidebar.find('a');
+
+				$sidebar_a
+					.addClass('scrolly')
+					.on('click', function() {
+
+						var $this = $(this);
+
+						// External link? Bail.
+							if ($this.attr('href').charAt(0) != '#')
+								return;
+
+						// Deactivate all links.
+							$sidebar_a.removeClass('active');
+
+						// Activate link *and* lock it (so Scrollex doesn't try to activate other links as we're scrolling to this one's section).
+							$this
+								.addClass('active')
+								.addClass('active-locked');
+
+					})
+					.each(function() {
+
+						var	$this = $(this),
+							id = $this.attr('href'),
+							$section = $(id);
+
+						// No section for this link? Bail.
+							if ($section.length < 1)
+								return;
+
+						// Scrollex.
+							$section.scrollex({
+								mode: 'middle',
+								top: '-20vh',
+								bottom: '-20vh',
+								initialize: function() {
+
+									// Deactivate section.
+										if (skel.canUse('transition'))
+											$section.addClass('inactive');
+
+								},
+								enter: function() {
+
+									// Activate section.
+										$section.removeClass('inactive');
+
+									// No locked links? Deactivate all links and activate this section's one.
+										if ($sidebar_a.filter('.active-locked').length == 0) {
+
+											$sidebar_a.removeClass('active');
+											$this.addClass('active');
+
+										}
+
+									// Otherwise, if this section's link is the one that's locked, unlock it.
+										else if ($this.hasClass('active-locked'))
+											$this.removeClass('active-locked');
+
+								}
+							});
+
+					});
+
+			}
+
+		// Scrolly.
+			$('.scrolly').scrolly({
+				speed: 1000,
+				offset: function() {
+
+					// If <=large, >small, and sidebar is present, use its height as the offset.
+						if (skel.breakpoint('large').active
+						&&	!skel.breakpoint('small').active
+						&&	$sidebar.length > 0)
+							return $sidebar.height();
+
+					return 0;
+
+				}
+			});
+
+		// Spotlights.
+			$('.spotlights > section')
+				.scrollex({
+					mode: 'middle',
+					top: '-10vh',
+					bottom: '-10vh',
+					initialize: function() {
+
+						// Deactivate section.
+							if (skel.canUse('transition'))
+								$(this).addClass('inactive');
+
+					},
+					enter: function() {
+
+						// Activate section.
+							$(this).removeClass('inactive');
+
+					}
+				})
+				.each(function() {
+
+					var	$this = $(this),
+						$image = $this.find('.image'),
+						$img = $image.find('img'),
+						x;
+
+					// Assign image.
+						$image.css('background-image', 'url(' + $img.attr('src') + ')');
+
+					// Set background position.
+						if (x = $img.data('position'))
+							$image.css('background-position', x);
+
+					// Hide <img>.
+						$img.hide();
+
+				});
+
+		// Features.
+			if (skel.canUse('transition'))
+				$('.features')
+					.scrollex({
+						mode: 'middle',
+						top: '-20vh',
+						bottom: '-20vh',
+						initialize: function() {
+
+							// Deactivate section.
+								$(this).addClass('inactive');
+
+						},
+						enter: function() {
+
+							// Activate section.
+								$(this).removeClass('inactive');
+
+						}
+					});
+
+	});
+
 })(jQuery);
