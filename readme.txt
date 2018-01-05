@@ -31,6 +31,7 @@ Guanhua Wang - Mingqiang WANG
 
 /transformation
 	- fontaines-a-boire.xsl : construction du tableau de fontaines.
+	- index.xsl : contruction de notre site principal.
 
 
 /web
@@ -41,3 +42,4 @@ Guanhua Wang - Mingqiang WANG
 	- fontaines-a-boire.xml : information des fontaine à boire à Paris (tranformé de csv).
 	- parcsetjardinsparis2010.xml : information des espaces verts parisiens avec géolocalisation (tranformé de csv) 
 	- zones-touristiques-internationales.xml : information des zones touristiques parisiens avec géolocalisation (tranformé de csv) 
+	- index.xml : contruction de notre site principal.
