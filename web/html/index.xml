@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="index.xsl"?>
+<PROJET>    
+    <sujet>Les fontaines potables à Paris</sujet>
+    
+    
+    <presentation>
+        <titre>PRÉSENTATION</titre>
+        <introduction id="1">
+            Ce site vise à présenter le projet réalisé dans le cadre des 2 cours - XML et Python - du M2 TAL à l'INALCO.
+            De diverses fontaines se situent dans Paris alors que toutes les fontaines ne sont pas potables. Ce qui va peut-être poser du problème pour les touristes, les voyageurs et les enfants. 
+            Dans cette perspective, nous avons proposé la problématique que, la potabilité des fontaines à Paris se relie à la nature de l'endroit où elles se situent. 
+            L'objectif de ce projet est donc d'étudier et de vérifier les aspects qui sont en corrélation avec la "potabilité" des fontaines, par la modélisation, le filtrage et l'analyse des données.
+        </introduction>
+        <introduction id="2">
+            Pour répondre à notre problématique et préciser les étapes à suivre, nous avons décidé de nous focaliser sur le modèle des fontaines, la localisation (arrondissement) des fontaines, ainsi que 2 sortes de zones: la zone touristique et l'espace vert.
+        </introduction>
+    </presentation>
+    
+    
+    <etapes>
+        <titre>MÉTHODES &amp; ÉTAPES</titre>
+        <intro>Les étapes suivies sont en 5 parties:</intro>
+        
+        <structuration>
+            <intro>Structuration de l’environnement de travail, récupération des données et pré-traitement de celles-ci</intro>
+            <creation_env>
+                Avant de commencer, il faut préparer l'environnement de travail, ici c'est l'architecture structurée des dossiers et des fichiers. Là on l'a fait manuellement.
+            </creation_env>
+            <recuperation>
+                <intro>
+                    Nous avons ensuite recueilli directement des données brutes de chaque fontaine à Paris (Île-de-France) dont la localisation, le modèle, la potabilité etc., ainsi que les données des zones touristiques internationales
+                    et des zones d'espaces verts (parcs ou jardins) à Paris pour analyser la corrélation entre la nature de ces zones et la potabilité des fontaines installées dans ces zones.
+                </intro>
+                <donnees>
+                    <origine>
+                        Les données que nous avons utilisées sont toutes recueillies depuis <link url="https://opendata.paris.fr/page/home/">opendata.paris.fr</link>. Les données de ce site sont open-source et on peut donc faire du Data-Mining sans limite.
+                        Les fichiers à exporter qui contiennent les données sont de plusieurs types, on en a choisis 2: CSV et GeoJson.
+                    </origine>
+                    <info_donnees>
+                        <liste>Ci-dessous les détails des données:</liste>
+                        <info>Taille initiale est en total 6 mb dont "fontaines-a-boire.csv" a 31 colonnes 1424 lignes, "parcsetjardinsparis2010.csv" a 12 colonnes 943 lignes, "zones-touristiques-internationales.csv" a 12 colonnes 13 lignes.</info>
+                        <info>Taille finale après le traitement est en total 7,4 mb dont "fontaines-a-boire.xml" a 8532 balises depuis la racine, "parcsetjardinsparis2010.xml" a 6594 balises, "zones-touristiques-internationales.xml" a 48 balises.</info>
+                        <info>Il n'y a pas de perte d'information lors du traitement.</info>
+                        <info>L'échelle de temps </info>
+                        <info>2 types de données initiales: CSV (un type pratique pour la modélisation et l'utilisation) et GeoJson (un nouveau type de fichier pour se recharger dans la carte en ligne et y présenter une zone/un graphe prédéfini).</info>
+                    </info_donnees>
+                </donnees>
+            </recuperation>
+            <nettoyage>
+                Malheureusement, les données dans les fichiers CSV n'étaient pas bien formattées. La présence des lignes vides et le manque de séparateurs peuvent embrouiller la modélisation dans la suite.
+                On a eu donc recours au langage de programmation Python pour nettoyer les données, en supprimant les lignes vides et les espaces redondants par exemple. Cette procédure a été intégrée dans le programme pour la modélisation des données.
+            </nettoyage>
+        </structuration>
+        
+        <modelisation>
+            <intro>Cette partie consiste à transformer les données après le traitement, en XML.</intro>
+            <csv2xml>
+                Pour transformer en XML, on a construit un programme en Python pour modéliser les données. Il s'agit de ne transformer que les informations concernant notre problématique du CSV en XML. Par conséquent le programme
+                a découpé par virgule chaque ligne dans CSV en morceaux de données et n'en a retiré que quelques morceaux. Puis il a écrit dans un nouveau fichier les balises en XML et a mis les données entre les balises..
+            </csv2xml>
+            <fichiers>
+                <liste>Consulter les scripts et les fichiers XML générés:</liste>
+                <fichier><link url="../../scripts/csv2xml_espacevert.py">Le script d'exemple</link></fichier>
+                <fichier><link url="../../xml/fontaines-a-boire.xml">Le fichier XML généré des fontaines</link></fichier>
+                <fichier><link url="../../xml/parcsetjardinsparis2010.xml">Le fichier XML généré des parcs et des espaces verts</link></fichier>
+                <fichier><link url="../../xml/zones-touristiques-internationales.xml">Le fichier XML généré des zones touristiques</link></fichier>
+            </fichiers>
+        </modelisation>
+        
+        <grammaires>
+            <liste>
+                Pour vérifier les fichiers xml générés automatiquement par nos programmes, on a établi les grammaires DTD et RNG qui valident XML. Vous pouvez consulter en téléchargeant les grammaires créés ci-dessous:
+            </liste>
+            <fichier>Les grammaires de "fontaines-a-boire.xml": <link url="../../grammaire/fontaines-a-boire.dtd">DTD</link>, <link url="../../grammaire/fontaines-a-boire.rng">RNG</link></fichier>
+            <fichier>Les grammaires de "parcsetjardinsparis2010.xml": <link url="../../grammaire/parcsetjardinsparis2010.dtd">DTD</link>, <link url="../../grammaire/parcsetjardinsparis2010.rng">RNG</link></fichier>
+            <fichier>Les grammaires de "zones-touristiques-internationales.xml": <link url="../../grammaire/zones-touristiques-internationales.dtd">DTD</link>, <link url="../../grammaire/zones-touristiques-internationales.rng">RNG</link></fichier>
+        </grammaires>
+        
+        <trans_tablo>
+            <liste>La dernière étape du traitement des données consiste à formatter les données modélisées. Là on a transformé les données XML en tableau HTML, puis on les a mises en carte pou visualiser les données et pour analyser.</liste>
+            <xml2html>
+                <intro>Il y a 2 manières de transformation en HTML qui ont été utilisées dans cette procédure:</intro>
+                <fichier>Par XSLT: la première fiche de données HTML (fontaines) a été transformée par le langage XSLT, cliquer <link url="../../transformation/fontaines-a-boire.xsl">ici</link> pour télécharger le fichier XSLT.</fichier>
+                <fichier>Par Python: les autres tableaux HTML ont été transformés en utilisant le langage de programmation Python, cliquer <link url="../../scripts/xml2html.zip">ici</link> pour télécharger les scripts Python.</fichier>
+            </xml2html>
+            <tableaux>
+                <tablo><link url="tableau_fontaine.html">Tableau Fontaines</link>: ce tableau représente les informations de toutes les fontaines de Paris.</tablo>
+                <tablo><link url="tableau_fontaine_arro.html">Tableau Fontaines potables selon Arrondissements</link>: ce tableau représente le nombre de fontaines potables de chaque arrondissement.</tablo>
+                <tablo><link url="tableau_modele.html">Tableau Fontaines potables selon Modèles</link>: ce tableau représente le nombre de fontaines potables ou non-potables de chaque modèle de fontaine.</tablo>
+                <tablo><link url="tableau_espacevert">Tableau des Expaces verts</link>: ce tableau représente les informations des espaces verts à Paris.</tablo>
+                <tablo><link url="tableau_touriste">Tableau des Zones touristiques</link>: ce tableau représente les informations des zones touristiques de Paris.</tablo>
+            </tableaux>
+        </trans_tablo>
+        
+        <carte>
+            <intro>
+                La mise en carte des données était le plus complexe. On s'est référé à Google Maps API pour créer une carte où sont marquées les fontaines. Par contre, nous avons trouvé un module Python "folium" qui peut aider à visualiser les zones polygones sur la carte. 
+                Il suffit de recharger dans le programme le fichier avec le nom d'extension "GeoJson" où se figurent les coordonnées dessinant le contours de la zone.
+            </intro>
+            <fichiers>
+                <liste>Voir ci-dessous les cartes générées:</liste>
+                <map><link url="carte_nombres_fontaines.html">Carte 1</link>: cette carte représente la localisation des fontaines. On peut voir en gros le nombre des fontaines par arrondissement.</map>
+                <map><link url="carte_espacesverts_fontaines.html">Carte 2</link>: cette carte représente les zones des parcs, jardins dans Paris, en parallèle avec les fontaines potables.</map>
+                <map><link url="carte_zonestouristiques_fontaines.html">Carte 3</link>: cette carte représente les zones touristiques internationales de Paris et les fontaines potables.</map>
+            </fichiers>
+        </carte>
+    </etapes>
+    
+    
+    <analyse>
+        
+    </analyse>    
+</PROJET>
