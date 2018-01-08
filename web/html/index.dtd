@@ -1,0 +1,126 @@
+<?xml encoding="UTF-8"?>
+
+<!ELEMENT PROJET (sujet,presentation,etapes,analyse)>
+<!ATTLIST PROJET
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT sujet (#PCDATA)>
+<!ATTLIST sujet
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT presentation (titre,introduction+)>
+<!ATTLIST presentation
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT etapes (titre,intro,structuration,modelisation,grammaires,
+                  trans_tablo,carte)>
+<!ATTLIST etapes
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT analyse (intro,(img|para)+)>
+<!ATTLIST analyse
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT introduction (#PCDATA)>
+<!ATTLIST introduction
+  xmlns CDATA #FIXED ''
+  id CDATA #REQUIRED>
+
+<!ELEMENT structuration (intro,creation_env,recuperation,nettoyage)>
+<!ATTLIST structuration
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT modelisation (intro,csv2xml,fichiers)>
+<!ATTLIST modelisation
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT grammaires (liste,fichier+)>
+<!ATTLIST grammaires
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT trans_tablo (liste,xml2html,tableaux)>
+<!ATTLIST trans_tablo
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT carte (intro,fichiers)>
+<!ATTLIST carte
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT img EMPTY>
+<!ATTLIST img
+  xmlns CDATA #FIXED ''
+  id NMTOKEN #REQUIRED
+  url CDATA #REQUIRED>
+
+<!ELEMENT para (#PCDATA)>
+<!ATTLIST para
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT creation_env (#PCDATA)>
+<!ATTLIST creation_env
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT recuperation (intro,donnees)>
+<!ATTLIST recuperation
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT nettoyage (#PCDATA)>
+<!ATTLIST nettoyage
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT csv2xml (#PCDATA)>
+<!ATTLIST csv2xml
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT xml2html (intro,fichier+)>
+<!ATTLIST xml2html
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT tableaux (tablo)+>
+<!ATTLIST tableaux
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT donnees (origine,info_donnees)>
+<!ATTLIST donnees
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT tablo (#PCDATA|link)*>
+<!ATTLIST tablo
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT origine (#PCDATA|link)*>
+<!ATTLIST origine
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT info_donnees (liste,info+)>
+<!ATTLIST info_donnees
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT info (#PCDATA)>
+<!ATTLIST info
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT titre (#PCDATA)>
+<!ATTLIST titre
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT intro (#PCDATA)>
+<!ATTLIST intro
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT link (#PCDATA)>
+<!ATTLIST link
+  xmlns CDATA #FIXED ''
+  url CDATA #REQUIRED>
+
+<!ELEMENT liste (#PCDATA)>
+<!ATTLIST liste
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT fichiers (liste,fichier+)>
+<!ATTLIST fichiers
+  xmlns CDATA #FIXED ''>
+
+<!ELEMENT fichier (#PCDATA|link)*>
+<!ATTLIST fichier
+  xmlns CDATA #FIXED ''>
