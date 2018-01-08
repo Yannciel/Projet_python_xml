@@ -1,5 +1,9 @@
 Guanhua Wang - Mingqiang WANG
 
+/******** ATTENTION ***********/
+La page index du projet est en xml et se situe dans le dossier "html" du "web" avec son xslt. Cette organisation est pour la raison d'affichage dans le navigateur du html transformé depuis xml. Vous ouvrez le fichier index.xml dans un navigateur Firefox(ou d'autres compatibles) et l'affichage est en html.
+/******************************/
+
 /data
 	/CSV
 	- fontaines-a-boire.csv : information des fontaine à boire à Paris (source https://opendata.paris.fr).
@@ -31,7 +35,6 @@ Guanhua Wang - Mingqiang WANG
 
 /transformation
 	- fontaines-a-boire.xsl : construction du tableau de fontaines.
-	- index.xsl : contruction de notre site principal.
 
 
 /web
@@ -39,7 +42,6 @@ Guanhua Wang - Mingqiang WANG
 
 
 /xml
-	- fontaines-a-boire.xml : information des fontaine à boire à Paris (tranformé de csv).
 	- parcsetjardinsparis2010.xml : information des espaces verts parisiens avec géolocalisation (tranformé de csv) 
 	- zones-touristiques-internationales.xml : information des zones touristiques parisiens avec géolocalisation (tranformé de csv) 
 	- index.xml : contruction de notre site principal.
