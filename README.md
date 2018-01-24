@@ -26,7 +26,7 @@ Grammaires de validation sous forme dtd et rng pour les documents xml.
 - xml2html_espacevert.py : construction du tableau des espaces verts.
 - xml2html_zonetouristique.py : construction du tableau des zone touristiques.
 - Projet_carte_Geojson.py : projection des fontaines, des espaces verts, des zones touristiques dans une carte OpenStreetMap.
-- carte_nombrefontaines.py :  projection des fontaines en groupant des marqueurs dans une carte Google.
+- carte_nombrefontaines.py :  projection des fontaines en groupant des marqueurs dans une carte Google. -- (API Key Supprimé à cause de la fin du projet)
 
 ## Transformation
 - fontaines-a-boire.xsl : construction du tableau de fontaines.
